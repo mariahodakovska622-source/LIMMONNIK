@@ -1,0 +1,128 @@
+/* --- ИНДИКАТОР АКТИВНОСТИ --- */
+.avatar-wrapper {
+    position: relative;
+    display: inline-flex; /* Исправил на inline-flex для точного позиционирования */
+    align-items: center;
+    justify-content: center;
+}
+
+.status-online {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    width: 10px;
+    height: 10px;
+    background: #3dcc30;
+    /* Исправил: обводка в цвет фона (темная), чтобы смотрелось нативнее */
+    border: 2px solid #1a1a1a; 
+    border-radius: 50%;
+    box-shadow: 0 0 8px rgba(61, 204, 48, 0.6);
+    z-index: 2;
+}
+
+/* --- ИНДИКАТОР ПЕЧАТАЕТ --- */
+#typing-display {
+    height: 20px;
+    padding: 0 25px;
+    font-size: 12px;
+    color: #D4E157; /* Сделал лимонным, чтобы выделялось */
+    font-style: italic;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    background: transparent;
+    transition: all 0.3s ease;
+}
+
+.typing-dots::after {
+    content: '';
+    display: inline-block;
+    animation: dots 1.5s infinite;
+}
+
+@keyframes dots {
+    0% { content: ''; }
+    25% { content: '.'; }
+    50% { content: '..'; }
+    75% { content: '...'; }
+}
+
+/* --- ГЛЯНЦЕВЫЙ HEADER --- */
+#chat-header { /* Исправил ID на тот, что в HTML */
+    background: linear-gradient(135deg, #161616 0%, #1a1a1a 100%);
+    border-bottom: 1px solid #D4E157;
+    position: relative;
+    overflow: hidden;
+    z-index: 10;
+}
+
+/* Эффект блика при наведении на хедер */
+#chat-header::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(212, 225, 87, 0.1), transparent);
+    transition: 0.5s;
+}
+
+#chat-header:hover::before {
+    left: 100%;
+}
+
+/* --- ПОЛЯ ВВОДА В ПРОФИЛЕ --- */
+.profile-card input, 
+.profile-card select, 
+.profile-card textarea {
+    width: 100%;
+    background: #252525;
+    border: 1px solid #333;
+    border-radius: 12px;
+    padding: 12px;
+    color: white;
+    margin-top: 10px;
+    outline: none;
+    box-sizing: border-box; /* Важно, чтобы не вылезало за края */
+    font-family: inherit;
+    transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.profile-card input:focus, 
+.profile-card textarea:focus {
+    border-color: #D4E157;
+    box-shadow: 0 0 10px rgba(212, 225, 87, 0.2);
+    background: #2a2a2a;
+}
+
+/* --- МОЯ ФИШКА: КНОПКА ОТПРАВКИ (ИМПУЛЬС) --- */
+#send-btn {
+    transition: 0.3s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#send-btn:hover {
+    background: #e1f05f; /* Чуть светлее при наведении */
+    box-shadow: 0 0 15px rgba(212, 225, 87, 0.4);
+}
+
+/* Скроллбар в стиле Лимонника */
+#messages::-webkit-scrollbar {
+    width: 5px;
+}
+
+#messages::-webkit-scrollbar-track {
+    background: #0a0a0a;
+}
+
+#messages::-webkit-scrollbar-thumb {
+    background: #333;
+    border-radius: 10px;
+}
+
+#messages::-webkit-scrollbar-thumb:hover {
+    background: #D4E157;
+}
